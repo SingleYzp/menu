@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.restaurant.dao.StaffDao" >
+  <resultMap id="BaseResultMap" type="com.restaurant.model.Staff" >
+    <id column="sta_nu" property="staNu" jdbcType="INTEGER" />
+    <result column="sta_name" property="staName" jdbcType="VARCHAR" />
+    <result column="sta_gender" property="staGender" jdbcType="VARCHAR" />
+    <result column="sta_position" property="staPosition" jdbcType="VARCHAR" />
+    <result column="sta_phone" property="staPhone" jdbcType="VARCHAR" />
+    <result column="sta_pwd" property="staPwd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sta_nu, sta_name, sta_gender, sta_position, sta_phone, sta_pwd
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where sta_nu = #{staNu,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByStaPosition" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * FROM staff WHERE sta_position = #{staPosition,jdbcType=VARCHAR}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from staff
+    where sta_nu = #{staNu,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.restaurant.model.Staff" >
+    insert into staff (sta_nu, sta_name, sta_gender, 
+      sta_position, sta_phone, sta_pwd
+      )
+    values (#{staNu,jdbcType=INTEGER}, #{staName,jdbcType=VARCHAR}, #{staGender,jdbcType=VARCHAR}, 
+      #{staPosition,jdbcType=VARCHAR}, #{staPhone,jdbcType=VARCHAR}, #{staPwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.restaurant.model.Staff" >
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staNu != null" >
+        sta_nu,
+      </if>
+      <if test="staName != null" >
+        sta_name,
+      </if>
+      <if test="staGender != null" >
+        sta_gender,
+      </if>
+      <if test="staPosition != null" >
+        sta_position,
+      </if>
+      <if test="staPhone != null" >
+        sta_phone,
+      </if>
+      <if test="staPwd != null" >
+        sta_pwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staNu != null" >
+        #{staNu,jdbcType=INTEGER},
+      </if>
+      <if test="staName != null" >
+        #{staName,jdbcType=VARCHAR},
+      </if>
+      <if test="staGender != null" >
+        #{staGender,jdbcType=VARCHAR},
+      </if>
+      <if test="staPosition != null" >
+        #{staPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="staPhone != null" >
+        #{staPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staPwd != null" >
+        #{staPwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.restaurant.model.Staff" >
+    update staff
+    <set >
+      <if test="staName != null" >
+        sta_name = #{staName,jdbcType=VARCHAR},
+      </if>
+      <if test="staGender != null" >
+        sta_gender = #{staGender,jdbcType=VARCHAR},
+      </if>
+      <if test="staPosition != null" >
+        sta_position = #{staPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="staPhone != null" >
+        sta_phone = #{staPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staPwd != null" >
+        sta_pwd = #{staPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sta_nu = #{staNu,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.restaurant.model.Staff" >
+    update staff
+    set sta_name = #{staName,jdbcType=VARCHAR},
+      sta_gender = #{staGender,jdbcType=VARCHAR},
+      sta_position = #{staPosition,jdbcType=VARCHAR},
+      sta_phone = #{staPhone,jdbcType=VARCHAR},
+      sta_pwd = #{staPwd,jdbcType=VARCHAR}
+    where sta_nu = #{staNu,jdbcType=INTEGER}
+  </update>
+</mapper>

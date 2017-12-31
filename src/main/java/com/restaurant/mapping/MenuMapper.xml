@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.restaurant.dao.MenuDao" >
+  <resultMap id="BaseResultMap" type="com.restaurant.model.Menu" >
+    <id column="me_nu" property="meNu" jdbcType="INTEGER" />
+    <result column="me_name" property="meName" jdbcType="VARCHAR" />
+    <result column="me_price" property="mePrice" jdbcType="INTEGER" />
+    <result column="me_type" property="meType" jdbcType="VARCHAR" />
+    <result column="me_remark" property="meRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    me_nu, me_name, me_price, me_type, me_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where me_nu = #{meNu,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu
+    where me_nu = #{meNu,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.restaurant.model.Menu" >
+    insert into menu (me_nu, me_name, me_price, 
+      me_type, me_remark)
+    values (#{meNu,jdbcType=INTEGER}, #{meName,jdbcType=VARCHAR}, #{mePrice,jdbcType=INTEGER}, 
+      #{meType,jdbcType=VARCHAR}, #{meRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.restaurant.model.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meNu != null" >
+        me_nu,
+      </if>
+      <if test="meName != null" >
+        me_name,
+      </if>
+      <if test="mePrice != null" >
+        me_price,
+      </if>
+      <if test="meType != null" >
+        me_type,
+      </if>
+      <if test="meRemark != null" >
+        me_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meNu != null" >
+        #{meNu,jdbcType=INTEGER},
+      </if>
+      <if test="meName != null" >
+        #{meName,jdbcType=VARCHAR},
+      </if>
+      <if test="mePrice != null" >
+        #{mePrice,jdbcType=INTEGER},
+      </if>
+      <if test="meType != null" >
+        #{meType,jdbcType=VARCHAR},
+      </if>
+      <if test="meRemark != null" >
+        #{meRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.restaurant.model.Menu" >
+    update menu
+    <set >
+      <if test="meName != null" >
+        me_name = #{meName,jdbcType=VARCHAR},
+      </if>
+      <if test="mePrice != null" >
+        me_price = #{mePrice,jdbcType=INTEGER},
+      </if>
+      <if test="meType != null" >
+        me_type = #{meType,jdbcType=VARCHAR},
+      </if>
+      <if test="meRemark != null" >
+        me_remark = #{meRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where me_nu = #{meNu,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.restaurant.model.Menu" >
+    update menu
+    set me_name = #{meName,jdbcType=VARCHAR},
+      me_price = #{mePrice,jdbcType=INTEGER},
+      me_type = #{meType,jdbcType=VARCHAR},
+      me_remark = #{meRemark,jdbcType=VARCHAR}
+    where me_nu = #{meNu,jdbcType=INTEGER}
+  </update>
+</mapper>
