@@ -43,7 +43,10 @@
     </div>
 </script>
 <script id="OrderManager" type="text/html">
-    <div> OrderManager</div>
+    <div>
+        OrderManager
+        <jsp:include page="/menu/getMenus"></jsp:include>
+    </div>
 </script>
 
 <script type="text/javascript">

@@ -1,6 +1,16 @@
 package com.restaurant.model;
 
 public class Menu {
+    public Menu(Integer meNu,String meName,Integer mePrice,String meType,String meRemark){
+        this.meName=meName;
+        this.meNu=meNu;
+        this.mePrice=mePrice;
+        this.meType=meType;
+        this.meRemark=meRemark;
+    }
+    public  Menu(){
+
+    }
     private Integer meNu;
 
     private String meName;

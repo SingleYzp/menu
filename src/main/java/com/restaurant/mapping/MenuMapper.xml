@@ -17,6 +17,11 @@
     from menu
     where me_nu = #{meNu,jdbcType=INTEGER}
   </select>
+
+  <select id="getMenuAll" resultMap="BaseResultMap" >
+    SELECT * FROM menu;
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from menu
     where me_nu = #{meNu,jdbcType=INTEGER}
