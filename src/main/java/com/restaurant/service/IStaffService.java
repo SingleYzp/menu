@@ -11,4 +11,8 @@ public interface IStaffService {
     public Staff getStaffById(Integer staNu);
     public void insertStaff(Staff staff);
     public List<Staff> getStaffByPosition(String staPosition);
+    public List<Staff> getStaffAll();
+    public void reviesStaff(Staff staff);
+    public void deleteById(Integer staNu);
+    public void addPeople(Staff staff);
 }

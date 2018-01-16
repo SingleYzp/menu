@@ -17,6 +17,8 @@ public interface StaffDao {
 
     List<Staff> selectByStaPosition(String staPosition);
 
+    List<Staff>selectAll();
+
     int updateByPrimaryKeySelective(Staff record);
 
     int updateByPrimaryKey(Staff record);

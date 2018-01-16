@@ -28,4 +28,16 @@ public class IStaffServiceImp implements IStaffService {
     public List<Staff> getStaffByPosition(String staPosition) {
         return this.staffDao.selectByStaPosition(staPosition);
     }
+
+    public List<Staff> getStaffAll(){return  this.staffDao.selectAll();}
+
+    public void reviesStaff(Staff staff){this.staffDao.updateByPrimaryKey(staff);}
+
+    public void deleteById(Integer staNu){
+        this.staffDao.deleteByPrimaryKey(staNu);
+    }
+
+    public void addPeople(Staff staff){
+        this.staffDao.insert(staff);
+    }
 }

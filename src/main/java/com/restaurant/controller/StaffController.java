@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by yzp on 2017/12/23.
@@ -48,6 +50,47 @@ public class StaffController {
 //        return "/customer/customerIndex";
     }
 
+    @RequestMapping("getStaffs")
+    public ModelAndView findALLStaff()
+    {
+        List<Staff> StaffList = null;
+        StaffList = this.iStaffService.getStaffAll();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("Staffs",StaffList);
+        modelAndView.setViewName("/boss/PeopleM");
+        return modelAndView;
+    }
+
+    @RequestMapping("jumpRevies")
+    public ModelAndView jumpRevies(@RequestParam int staNu)
+    {
+        Staff staff_re = this.iStaffService.getStaffById(staNu);
+        System.out.println(staff_re);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("staff",staff_re);
+        modelAndView.setViewName("/boss/ReviesPeople");
+        return modelAndView;
+    }
+
+    @RequestMapping("revies")
+    public String revies(Staff staff)
+    {
+        this.iStaffService.reviesStaff(staff);
+        return "redirect:/staff/loginSuccess";
+    }
+
+    @RequestMapping("jumpAdd")
+    public String jumpAdd()
+    {
+        return "/boss/AddPeople";
+    }
+
+    @RequestMapping("AddPeople")
+    public String addPeople(Staff staff)
+    {
+        this.iStaffService.addPeople(staff);
+        return "redirect:/staff/loginSuccess";
+    }
     @RequestMapping("/jumpIndex")
     public String jumpIndex(){
         return "index";
@@ -62,6 +105,13 @@ public class StaffController {
     public String registerCustomer(){
 
         return "registerCustomerSuccess";
+    }
+
+    @RequestMapping("delete")
+    public String deleteStaff(@RequestParam int staNu)
+    {
+        this.iStaffService.deleteById(staNu);
+        return "redirect:/staff/loginSuccess";
     }
 
 }
