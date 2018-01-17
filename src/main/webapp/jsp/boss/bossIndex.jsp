@@ -18,7 +18,7 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand active" href="#">BossView</a>
+            <a class="navbar-brand active" href="#homePage">BossView</a>
         </div>
         <div>
             <ul class="nav navbar-nav">
@@ -38,7 +38,6 @@
 </script>
 <script id="PeopleManager" type="text/html">
     <div>
-        PeopleManager
         <jsp:include page="/staff/getStaffs"></jsp:include>
     </div>
 </script>
@@ -61,9 +60,19 @@
     function hashPage(hashMsg)
     {
         var hashArr = ['#PeopleManager','#OrderManager'];
+        var hashBodyArr = ['#addPeople','#info'];
         var demo = $('#view');
-        hashMsg = hashArr.indexOf(hashMsg) > -1 ? hashMsg : '#homePage';
-        demo.html($(hashMsg).html());
+        var bodyDemo = $('#body');
+        hashMsg = hashArr.indexOf(hashMsg) > -1 ? hashMsg :(hashBodyArr.indexOf(hashMsg) > -1?hashMsg:'#homePage') ;
+        if(hashBodyArr.indexOf(hashMsg) > -1)
+        {
+
+            bodyDemo.html($(hashMsg).html());
+        }
+        else{
+            demo.html($(hashMsg).html());
+
+        }
     }
 </script>
 </body>

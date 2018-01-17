@@ -88,8 +88,10 @@ public class StaffController {
     @RequestMapping("AddPeople")
     public String addPeople(Staff staff)
     {
-        this.iStaffService.addPeople(staff);
-        return "redirect:/staff/loginSuccess";
+        if(this.iStaffService.addPeople(staff))
+            return "redirect:/staff/loginSuccess#PeopleManager";
+        else
+            return "redirect:/staff/loginSuccess#info";
     }
     @RequestMapping("/jumpIndex")
     public String jumpIndex(){
@@ -111,7 +113,7 @@ public class StaffController {
     public String deleteStaff(@RequestParam int staNu)
     {
         this.iStaffService.deleteById(staNu);
-        return "redirect:/staff/loginSuccess";
+        return "redirect:/staff/loginSuccess#PeopleManager";
     }
 
 }

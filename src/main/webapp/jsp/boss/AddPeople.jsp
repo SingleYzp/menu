@@ -22,24 +22,24 @@
     <form role="form" action="/staff/AddPeople">
         <div class="form-group">
             <label for="id">id</label>
-            <input type="text" class="form-control" id="id" placeholder="输入id">
+            <input type="text" class="form-control" id="id" name="staNu" placeholder="输入id">
         </div>
         <div class="form-group">
             <label for="name">姓名</label>
-            <input type="text" class="form-control" id="name" placeholder="输入姓名">
+            <input type="text" class="form-control" id="name" name="staName" placeholder="输入姓名">
         </div>
         <div class="radio form-group">
             <label>
-                <input type="radio" name="gender" id="female" value="female">男
+                <input type="radio" name="staGender" id="female" value="female">男
             </label>
             <label>
-                <input type="radio" name="gender" id="male" value="male" checked>女
+                <input type="radio" name="staGender" id="male" value="male" checked>女
             </label>
         </div>
 
         <div class="form-group">
             <label for="position">选择职位</label>
-            <select class="form-control" id="position" class="form-control">
+            <select class="form-control" id="position" name="staPosition" class="form-control">
                 <option value="经理">经理</option>
                 <option value="厨师">厨师</option>
                 <option value="收银员">收银员</option>
@@ -48,16 +48,12 @@
         </div>
         <div class="form-group">
             <label for="tel">联系电话</label>
-            <input type="text" class="form-control" id="tel" placeholder="输入联系电话">
+            <input type="text" class="form-control" id="tel" name="staPhone" placeholder="输入联系电话">
         </div>
         <div class="row">
-        <div class="form-group col-lg-4">
+        <div class="form-group">
             <label for="password">密码</label>
-            <input type="password" class="form-control" id="password" placeholder="输入密码">
-        </div>
-        <div class="form-group col-lg-4">
-            <label for="repassword">重复密码</label>
-            <input type="password" class="form-control" id="repassword" placeholder="再次输入密码">
+            <input type="password" class="form-control" id="password" name="staPwd" placeholder="输入密码">
         </div>
         </div>
         <div class="form-group">

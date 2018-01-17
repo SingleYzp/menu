@@ -37,7 +37,14 @@ public class IStaffServiceImp implements IStaffService {
         this.staffDao.deleteByPrimaryKey(staNu);
     }
 
-    public void addPeople(Staff staff){
-        this.staffDao.insert(staff);
+    public boolean addPeople(Staff staff){
+        Staff s = null;
+        s = this.staffDao.selectByPrimaryKey(staff.getStaNu());
+        if(s != null)
+            return false;
+        else {
+            this.staffDao.insert(staff);
+            return true;
+        }
     }
 }
