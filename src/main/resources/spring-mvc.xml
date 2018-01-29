@@ -23,6 +23,7 @@
 			</list>
 		</property>
 	</bean>
+
 	<!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
 	<!--<bean-->
 		<!--class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
@@ -51,6 +52,36 @@
         <property name="maxUploadSize" value="10485760000" />  
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />  
-    </bean> 
+    </bean>
+
+
+	<!--启用shiro注解 -->
+	<bean
+			class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+			depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean
+			class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	<!--&lt;!&ndash; shiro为集成springMvc 拦截异常，使用注解时无权限的跳转 &ndash;&gt;-->
+	<!--<bean-->
+			<!--class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+		<!--<property name="exceptionMappings">-->
+			<!--<props>-->
+				<!--&lt;!&ndash; 这里你可以根据需要定义N多个错误异常转发 &ndash;&gt;-->
+				<!--<prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/unauthorized</prop>-->
+				<!--<prop key="org.apache.shiro.authz.UnauthenticatedException">redirect:/unauthorized</prop>-->
+				<!--<prop key="java.lang.IllegalArgumentException">/error</prop>  &lt;!&ndash; 参数错误(bizError.jsp) &ndash;&gt;-->
+				<!--<prop key="java.lang.Exception">/error</prop>  &lt;!&ndash; 其他错误为'未定义错误'(unknowError.jsp) &ndash;&gt;-->
+			<!--</props>-->
+		<!--</property>-->
+	<!--</bean>-->
+
+	<!-- 静态资源访问（不拦截此目录下的东西的访问） -->
+	<!--<mvc:resources location="/js/" mapping="/js/**" />-->
+	<!--<mvc:resources location="/icon/" mapping="/icon/**" />-->
+
 
 </beans>
