@@ -37,7 +37,7 @@
                 data:d,
                 async:false,
                 success:function () {
-                    window.open("/staff/loginSuccess","_self");
+                    window.open("/staff/loginSuccess##PeopleManager","_self");
                 }
         });
     }

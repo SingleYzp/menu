@@ -14,5 +14,5 @@ public interface IStaffService {
     public List<Staff> getStaffAll();
     public void reviesStaff(Staff staff);
     public void deleteById(Integer staNu);
-    public void addPeople(Staff staff);
+    public boolean addPeople(Staff staff);
 }
